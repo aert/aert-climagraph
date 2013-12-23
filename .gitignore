@@ -1,0 +1,33 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Editor temp files:
+*.swp
+*~
+
+# Build dirs
+/docs/build
+/build
+/dist
+
+# SQLite3 database files:
+/database.db
+
+# Logs:
+/logs/*.log
+
+# Others:
+.coverage
+.idea
+.vagrant
+.tags
+.project
+.pydevproject
+
+# This project
+/public/assets/
+/public/private/
+/RELEASE-VERSION
