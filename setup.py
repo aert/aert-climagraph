@@ -49,7 +49,7 @@ extras_requires = {
     'docs': ['sphinx'],
 }
 
-setup(name='weather',
+setup(name='climagraph',
       version=get_git_version(),
       description='The goal of this project is to '
                   'provide a tool for rainfall data plotting.',
@@ -59,10 +59,10 @@ setup(name='weather',
       ],
       author='aert',
       author_email='dev.aert@gmail.com',
-      url='https://github.com/aert/aert-weather',
-      keywords='weather plot rainfall data',
+      url='https://github.com/aert/aert-climagraph',
+      keywords='climagraph plot rainfall data',
       packages=find_packages(exclude=['tests']),
-      data_files=gen_data_files('weather/etc'),
+      data_files=gen_data_files('climagraph/etc'),
       include_package_data=True,
       zip_safe=False,
       test_suite='tests',
@@ -71,7 +71,7 @@ setup(name='weather',
       extras_require=extras_requires,
       #entry_points={
       #    '[console_scripts]': [
-      #        'aert.weather = weather.core.runner:main',
+      #        'aert.climagraph = climagraph.core.runner:main',
       #    ],
       #},
       )
