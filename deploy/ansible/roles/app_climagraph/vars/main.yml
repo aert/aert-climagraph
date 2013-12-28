@@ -1,0 +1,22 @@
+---
+
+# external
+app_servername    : "{{ app_servername }}"
+with_fixtures     : "{{ with_fixtures }}"
+installer_version : "{{ installer_version | mandatory }}"
+installer_dir     : "{{ installer_dir | mandatory }}"
+
+# app
+prefix        : /opt/aert
+app_name      : climagraph
+app_home      : "{{ prefix }}/{{ app_name }}"
+app_env       : "{{ app_home }}/env"
+app_public    : "{{ app_home }}/public"
+app_assets    : "{{ app_public }}/static"
+app_uploads   : "{{ app_home }}/uploads"
+app_log       : "{{ app_home }}/log"
+app_fixtures  : "{{ app_home }}/fixtures"
+tmp_path      : "{{ prefix }}/tmp"
+
+installer_dirname : "{{ app_name }}_{{ installer_version }}_setup"
+installer_tgz     : "{{ installer_dir }}/{{ installer_dirname }}.tgz"

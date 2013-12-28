@@ -1,0 +1,13 @@
+---
+
+# Start Supervisor
+- name: supervisor_start
+  shell: service supervisor start
+
+# Configure supervisor
+- name: "supervisor_add_{{ app_name }}"
+  template: src=supervisor.conf dest=/etc/supervisor/conf.d/{{ app_name }}.conf
+  notify:
+    - restart supervisor
+    - restart nginx
+

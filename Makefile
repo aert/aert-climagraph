@@ -57,31 +57,6 @@ semantic_latest:
 	mv build/semantic/packaged climagraph/common/static/vendor/semantic/
 	@rm -rf build/semantic*
 
-# VAGRANT
-# #######
-
-vagrant: installer vagrant_up 
-
-vagrant_halt:
-	@cd $(VAGRANT_PATH); vagrant halt
-
-vagrant_up:
-	@cd $(VAGRANT_PATH); vagrant up
-
-vagrant_ssh:
-	@cd $(VAGRANT_PATH); vagrant up; vagrant ssh
-
-vagrant_reload:
-	@cd $(VAGRANT_PATH); vagrant reload
-
-vagrant_destroy:
-	@cd $(VAGRANT_PATH); vagrant destroy
-
-vagrant_provision: installer vagrant_reprovision
-
-vagrant_reprovision: 
-	@cd $(VAGRANT_PATH); vagrant provision
-
 # DEPLOYMENT
 # ##########
 
@@ -97,7 +72,8 @@ installer: develop installer_clean wheel installer_archive
 installer_clean:
 	@rm -rf dist
 	@mkdir -p build/installer
-	@rm -rf build/setup_*
+	@rm -rf build/*_setup
+	@rm -rf build/*_setup.tgz
 
 wheel:
 	@pip wheel --wheel-dir=build/wheel/wheel-dir . --download-cache $(PIP_CACHE)
@@ -108,6 +84,6 @@ installer_archive:
 	@cp deploy/installer/Makefile build/installer/
 	@sed -i 's/__VERSION__/$(PROJECT_VERSION)/g' build/installer/Makefile
 	@cp deploy/installer/requirements.txt build/installer/
-	@mv build/installer/ build/setup_$(PROJECT_FILENAME)
-	@cd build; tar -czf setup_$(PROJECT_FILENAME).tgz setup_$(PROJECT_FILENAME)/
+	@mv build/installer/ build/$(PROJECT_FILENAME)_setup
+	@cd build; tar -czf $(PROJECT_FILENAME)_setup.tgz $(PROJECT_FILENAME)_setup/
 

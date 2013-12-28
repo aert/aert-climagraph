@@ -40,7 +40,7 @@ requires_dev = [
     'pip-tools==0.3.4',
     'flake8==2.1.0',
     # Deploy tools
-    'ansible==1.4',
+    'ansible==1.4.3',
 ]
 
 extras_requires = {
@@ -61,17 +61,17 @@ setup(name='climagraph',
       author_email='dev.aert@gmail.com',
       url='https://github.com/aert/aert-climagraph',
       keywords='climagraph plot rainfall data',
-      packages=find_packages(exclude=['tests']),
       data_files=gen_data_files('climagraph/etc'),
-      include_package_data=True,
-      zip_safe=False,
       test_suite='tests',
       install_requires=extras_requires['base'],
       tests_require=extras_requires['testing'],
       extras_require=extras_requires,
-      #entry_points={
-      #    '[console_scripts]': [
-      #        'aert.climagraph = climagraph.core.runner:main',
-      #    ],
-      #},
+      entry_points={
+          'console_scripts': [
+              'aert.climagraph = climagraph.core.runner:main',
+          ],
+      },
+      packages=find_packages(exclude=['tests']),
+      include_package_data=True,
+      zip_safe=False,
       )

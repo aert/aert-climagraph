@@ -1,0 +1,10 @@
+---
+
+- name: nginx_app_available
+  template: src=site_{{ app_name }}.app dest=/etc/nginx/sites-available/{{ app_name }}.app owner=www-data group=www-data
+
+- name: nginx_app_enable
+  file: src=/etc/nginx/sites-available/{{ app_name }}.app dest=/etc/nginx/sites-enabled/{{ app_name }}.app state=link owner=www-data group=www-data
+  notify:
+    - restart nginx
+ 
