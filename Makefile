@@ -1,11 +1,11 @@
 
-PROJECT_NAME=weather
+PROJECT_NAME=climagraph
 PROJECT_VERSION:=$(shell python version.py)
 PROJECT_FILENAME=$(PROJECT_NAME)_$(PROJECT_VERSION)
 VAGRANT_PATH=deploy
 
-CONF=`pwd`/weather/etc/config_develop.ini
-FIXTURES=deploy/ansible/roles/app_weather/files
+CONF=`pwd`/climagraph/etc/config_develop.ini
+FIXTURES=deploy/ansible/roles/app_climagraph/files
 
 PIP_CACHE=./build/pip_cache
 
@@ -25,7 +25,7 @@ all:  clean develop vagrant_setup
 ## clean temporary files after a building operation
 clean:
 	@echo "Cleaning..." 
-	@rm -rf public/weather/
+	@rm -rf public/climagraph/
 	@rm -rf `find . -name *.pyc`
 	@rm -rf `find . -name *.pyo`
 	@rm -rf docs/build
@@ -53,8 +53,8 @@ semantic_latest:
 	@mkdir -p build/
 	@rm -rf build/semantic*
 	cd build; wget http://semantic-ui.com/build/semantic.zip; unzip semantic.zip -d semantic
-	@rm -rf weather/common/static/vendor/semantic/
-	mv build/semantic/packaged weather/common/static/vendor/semantic/
+	@rm -rf climagraph/common/static/vendor/semantic/
+	mv build/semantic/packaged climagraph/common/static/vendor/semantic/
 	@rm -rf build/semantic*
 
 # VAGRANT
