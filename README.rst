@@ -1,5 +1,5 @@
-Farm ERP
-''''''''
+climagraph
+''''''''''
 
 .. .. image:: https://travis-ci.org/aert/aert-climagraph.png?branch=master
         :target: https://travis-ci.org/aert/aert-climagraph
