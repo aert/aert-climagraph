@@ -1,0 +1,53 @@
+
+@startuml features_overview_context.png
+
+   ' Context
+   ' -------
+
+   left to right direction
+   [Web Browser] as Browser << client >>
+   usecase System as "
+      <b>ClimaGraph</b>\n<b>System</b>
+      ..
+      Raw Data
+      Consolidated Data
+      Graphs
+   "
+
+   Users   <--> Browser 
+   Browser <--> (System)
+
+@enduml
+
+
+@startuml features_overview_stakeholders.png
+
+   ' Stakeholders
+   ' ------------
+
+   :User:
+   :Guest:
+   :Admin:
+
+@enduml
+
+
+@startuml features_overview_guc.png
+
+   ' Global Use Cases
+   ' ----------------
+
+   left to right direction
+   :User:
+   ':Admin:
+   (uc1: Manage raw data)           as (guc1)
+   (uc2: View consolidated data)    as (guc2)
+   (uc3: View graphics)             as (guc3)
+   '(uc0: Manage system settings) as (guc0)
+
+   User           -> (guc1)
+   User           -> (guc2)
+   User           -> (guc3)
+   'Admin              -> (guc0)
+
+@enduml

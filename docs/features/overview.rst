@@ -7,17 +7,17 @@ Overview
 Context
 *******
 
-.. .. image:: /images/generated/features_overview_context.png
+.. image:: /images/generated/features_overview_context.png
 
 Global Use Cases
 ****************
 
-.. .. _actors:
+.. _actors:
 
 Stakeholders
 ------------
 
-.. .. image:: /images/generated/features_overview_stakeholders.png
+.. image:: /images/generated/features_overview_stakeholders.png
 
 **User**
     Authenticated users.
@@ -31,8 +31,13 @@ Stakeholders
 Global Use Cases
 ----------------
 
-.. .. image:: /images/generated/features_overview_guc.png
+.. image:: /images/generated/features_overview_guc.png
 
 .. toctree::
    :maxdepth: 1
+
+   uc1_data_raw.rst
+   uc2_data_conso.rst
+   uc3_graphs.rst
+
 
