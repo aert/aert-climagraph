@@ -15,7 +15,7 @@
 import sys
 import os
 
-from ..version import get_git_version
+from version import get_git_version
 
 
 # If extensions (or modules to document with autodoc) are in another directory,
