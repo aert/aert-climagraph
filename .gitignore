@@ -9,7 +9,7 @@
 *~
 
 # Build dirs
-/docs/build
+/docs/_build
 /build
 /dist
 

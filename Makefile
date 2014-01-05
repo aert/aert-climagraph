@@ -40,6 +40,7 @@ clean_all:
 
 develop:
 	@pip install -e .[testing] --download-cache $(PIP_CACHE)
+	@pip install -e .[docs] --download-cache $(PIP_CACHE)
 
 develop_init: develop_deps develop
 

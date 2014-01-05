@@ -46,7 +46,7 @@ requires_dev = [
 extras_requires = {
     'base': requires_base,
     'testing': ['nose>=1.3.0', 'coverage>=3.7'] + requires_dev,
-    'docs': ['sphinx'],
+    'docs': ['sphinx==1.2'],
 }
 
 setup(name='climagraph',
