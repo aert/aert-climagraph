@@ -1,0 +1,70 @@
+
+@startuml model_overview.png
+
+   ' Objects
+   ' -------
+    class Location {
+        {static} code : str
+        name : str
+        latitude : float
+        longitude : float
+        geometry : str
+    }
+
+    class DataType {
+        {static} name : str
+        unit : str
+    }
+    note "name\n--\npluviometry\nwind\netc..." as NoteDataType
+
+    class Threshold {
+        {static} min_val : double
+        {static} max_val : double
+        {static} {abstract} datatype_id 
+        color : str
+        symbol : str
+    }
+
+    class PrimaryDataPoint {
+        {static} date_sampled : date
+        {static} timeslot : long
+        {static} {abstract} location_id 
+        {static} {abstract} datatype_id 
+        value : double
+    }
+
+    class ConsolidatedDataPoint {
+        {static} date_sampled : date
+        {static} timeslot : long
+        {static} function : int
+        {static} {abstract} location_id 
+        {static} {abstract} datatype_id 
+        value : double
+        invalidated: bool
+    }
+    note "function\n--\naverage\nmin\nmax\nlast" as NoteCDP
+
+    class LinkPrimaryConsolidated {
+        {static} {abstract} primarydatapoint_id
+        {static} {abstract} consolidateddatapoint_id
+    }
+
+   ' Relations
+   ' ---------
+
+    DataType -- NoteDataType
+
+    Threshold --> DataType
+
+    PrimaryDataPoint --> Location
+    PrimaryDataPoint --> DataType
+
+    ConsolidatedDataPoint --> Location
+    ConsolidatedDataPoint --> DataType
+    ConsolidatedDataPoint -- NoteCDP
+
+    LinkPrimaryConsolidated --> PrimaryDataPoint
+    LinkPrimaryConsolidated --> ConsolidatedDataPoint
+
+@enduml
+

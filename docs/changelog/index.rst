@@ -1,7 +1,7 @@
 Changelog
 =========
 
-Version 0.1.1
+Version 0.1.2
 *************
 
-* Docs initialization ``+docs @20140105``
+* Docs initialization ``+docs @20140106``

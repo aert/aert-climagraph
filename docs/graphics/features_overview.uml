@@ -37,7 +37,7 @@
    ' Global Use Cases
    ' ----------------
 
-   left to right direction
+   'left to right direction
    :User:
    ':Admin:
    (uc1: Manage raw data)           as (guc1)
@@ -45,9 +45,9 @@
    (uc3: View graphics)             as (guc3)
    '(uc0: Manage system settings) as (guc0)
 
-   User           -> (guc1)
-   User           -> (guc2)
-   User           -> (guc3)
-   'Admin              -> (guc0)
+   User          --> (guc1)
+   User          --> (guc2)
+   User          --> (guc3)
+   'Admin             --> (guc0)
 
 @enduml

@@ -26,6 +26,9 @@ Features
    :maxdepth: 2
 
    features/overview.rst
+   features/uc1_data_raw.rst
+   features/uc2_data_conso.rst
+   features/uc3_graphs.rst
 
 Developers
 **********
