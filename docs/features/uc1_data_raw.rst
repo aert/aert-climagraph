@@ -1,16 +1,29 @@
 uc1: Manage raw data
 ====================
 
-.. .. image:: /images/generated/uc1_data_raw.png
+.. image:: /images/generated/uc1_data_raw.png
+
+Within the scope of this project, raw data points  are called ``Primary
+DataPoints`` (**PDP**).
+
+In contrast, ``Consolidated DataPoints`` (**CDP**) are purely computed values.
 
 
-.. .. toctree::
+.. toctree::
    :maxdepth: 1
 
-..   uc1/uc1-1_data_raw_list
-   uc1/uc1-2_data_raw_import
-   uc1/uc1-3_data_raw_export
-   uc1/uc1-4_data_raw_edit
-   uc1/uc1-5_data_raw_del
+   uc1/uc1-2-1_data_raw_list.rst
+
+.. uc1/uc1-1-1_data_raw_loc_list
+.. uc1/uc1-1-2_data_raw_loc_add
+.. uc1/uc1-1-3_data_raw_loc_update
+.. uc1/uc1-1-4_data_raw_loc_delete
+
+.. uc1/uc1-2-2_data_raw_add
+.. uc1/uc1-2-3_data_raw_update
+.. uc1/uc1-2-4_data_raw_delete
+
+.. uc1/uc1-3-1_data_raw_import
+.. uc1/uc1-3-2_data_raw_export
 
 

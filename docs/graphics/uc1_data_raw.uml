@@ -1,0 +1,43 @@
+
+@startuml uc1_data_raw.png
+
+   ' Manage raw data
+   ' ---------------
+
+   left to right direction
+
+   actor "User" as user
+
+   ' Locations
+   (uc1.1.1: List Locations)  as (uc1.1.1)
+   (uc1.1.2: Add Location)    as (uc1.1.2)
+   (uc1.1.3: Update Location) as (uc1.1.3)
+   (uc1.1.4: Delete Location) as (uc1.1.4)
+
+   ' PDPs
+   (uc1.2.1: List PDPs)  as (uc1.2.1)
+   (uc1.2.2: Add PDP)    as (uc1.2.2)
+   (uc1.2.3: Update PDP) as (uc1.2.3)
+   (uc1.2.4: Delete PDP) as (uc1.2.4)
+
+   ' Import/Export
+   (uc1.3.1: Import PDPs) as (uc1.3.1)
+   (uc1.3.2: Export PDPs) as (uc1.3.2)
+
+   ' Links
+   ' -----
+    
+    (uc1.1.1) <-- user
+    (uc1.1.2) <-- user
+    (uc1.1.3) <-- user
+    (uc1.1.4) <-- user
+
+    user      --> (uc1.2.1)
+    user      --> (uc1.2.2)
+    user      --> (uc1.2.3)
+    user      --> (uc1.2.4)
+
+    user      ---right--> (uc1.3.1) 
+    user      ---right--> (uc1.3.2) 
+
+@enduml
