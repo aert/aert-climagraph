@@ -29,6 +29,9 @@
    :Guest:
    :Admin:
 
+    User     --|> Guest
+    Admin    --|> User
+
 @enduml
 
 

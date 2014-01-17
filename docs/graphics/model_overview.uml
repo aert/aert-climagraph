@@ -4,43 +4,43 @@
    ' Objects
    ' -------
     class Location {
-        {static} code : str
-        name : str
-        latitude : float
-        longitude : float
-        geometry : str
+        {static} name : str
+        description   : str
+        latitude      : double
+        longitude     : double
+        geometry      : str
     }
 
     class DataType {
         {static} name : str
-        unit : str
+        unit          : str
     }
     note "name\n--\npluviometry\nwind\netc..." as NoteDataType
 
     class Threshold {
-        {static} min_val : double
-        {static} max_val : double
-        {static} {abstract} datatype_id 
-        color : str
-        symbol : str
+        {static} min_val                : double
+        {static} max_val                : double
+        {static} {abstract} datatype_id
+        color                           : str
+        symbol                          : str
     }
 
     class PrimaryDataPoint {
-        {static} date_sampled : date
-        {static} timeslot : long
-        {static} {abstract} location_id 
-        {static} {abstract} datatype_id 
-        value : double
+        {static} date_sampled           : date
+        {static} timeslot               : long
+        {static} {abstract} location_id
+        {static} {abstract} datatype_id
+        value                           : double
     }
 
     class ConsolidatedDataPoint {
-        {static} date_sampled : date
-        {static} timeslot : long
-        {static} function : int
-        {static} {abstract} location_id 
-        {static} {abstract} datatype_id 
-        value : double
-        invalidated: bool
+        {static} date_sampled           : date
+        {static} timeslot               : long
+        {static} function               : int
+        {static} {abstract} location_id
+        {static} {abstract} datatype_id
+        value                           : double
+        invalidated                     : bool
     }
     note "function\n--\naverage\nmin\nmax\nlast" as NoteCDP
 
@@ -51,6 +51,8 @@
 
    ' Relations
    ' ---------
+
+    Location --> "*" Location : parents
 
     DataType -- NoteDataType
 

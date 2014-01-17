@@ -24,17 +24,17 @@ Post-conditions
 Normal flow
 -----------
 
-1. The user sets his search criterias and submits :
+1. The user sets his search criterias and submits the form:
 
    **Search Criterias:**
 
-   * ``Location`` : Geographical area
-   * ``DataPoint Type`` : *ex.: Wind, Rain, Rice Production, etc.*
-   * ``Date Span``: Start date & end date
+   :Location:       Geographical area
+   :DataPoint Type: Kind of data, *ex.: Wind, Rain, Rice Production, etc.*
+   :Date Span:      Start date & end date
 
    **Actions:**
 
-   * ``Submit``
+   :Search: Submits the input form 
 
 2. The system displays the Primary DataPoints list according to previous
    search criterias.
@@ -42,11 +42,12 @@ Normal flow
 
    **Data:**     
 
-   * ``Date Sampled`` : Date of the sample  - ``date``
-   * ``Timeslot`` : Timeslot for the sampling in seconds - ``long``
-   * ``Location`` : *Exact* location of the sample, see ``rule 1`` - ``label``
-   * ``Value`` : measurement reported - ``double``
+   :Date Sampled: Date of the sample  - ``date``
+   :Timeslot:     Timeslot for the sampling in seconds - ``long``
+   :Location:     *Exact* location of the sample, see ``rule 1`` - ``label``
+   :Value:        measurement reported - ``double, nullable``
 
+.. _uc1-2-1-rules:
 
 Business Rules
 --------------
@@ -56,3 +57,5 @@ Business Rules
 
   They can be sub locations included in the area of the search criteria.
 
+:rule 2:
+  When one of the ``PDPs`` field is changed, all ``CDPs`` are invalided.
