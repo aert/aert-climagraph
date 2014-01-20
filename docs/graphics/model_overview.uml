@@ -1,72 +1,148 @@
 
 @startuml model_overview.png
 
-   ' Objects
-   ' -------
-    class Location {
-        {static} name : str
-        description   : str
-        latitude      : double
-        longitude     : double
-        geometry      : str
-    }
+    '--------------------------------------------------------------------------
 
     class DataType {
         {static} name : str
-        unit          : str
-    }
-    note "name\n--\npluviometry\nwind\netc..." as NoteDataType
-
-    class Threshold {
-        {static} min_val                : double
-        {static} max_val                : double
-        {static} {abstract} datatype_id
-        color                           : str
-        symbol                          : str
+        unit : str
     }
 
-    class PrimaryDataPoint {
-        {static} date_sampled           : date
-        {static} timeslot               : long
-        {static} {abstract} location_id
-        {static} {abstract} datatype_id
-        value                           : double
-    }
-
-    class ConsolidatedDataPoint {
-        {static} date_sampled           : date
-        {static} timeslot               : long
-        {static} function               : int
-        {static} {abstract} location_id
-        {static} {abstract} datatype_id
-        value                           : double
-        invalidated                     : bool
-    }
-    note "function\n--\naverage\nmin\nmax\nlast" as NoteCDP
-
-    class LinkPrimaryConsolidated {
-        {static} {abstract} primarydatapoint_id
-        {static} {abstract} consolidateddatapoint_id
-    }
-
-   ' Relations
-   ' ---------
-
-    Location --> "*" Location : parents
+    note as NoteDataType 
+        <b>name:</b> <i>Title</i>
+        pluviometry
+        production
+        wind, etc.
+        <b>unit:</b>
+        m/s, kg, ml, etc.
+    end note
 
     DataType -- NoteDataType
 
+    '--------------------------------------------------------------------------
+
+    class Location {
+        {static} name : str
+        description : str
+        geo_type : str
+        geo_coords : text
+    }
+
+    note as NoteLocation
+        <b>geo_type:</b> <i>GeoJSON Type</i>
+        Point, LineString, Polygon, etc.
+    end note
+
+    Location -- NoteLocation
+    Location --> "*" Location : parents
+
+    '--------------------------------------------------------------------------
+
+    class SamplingCategory {
+        timeslot : long
+    }
+
+    note as NoteSamplingCategory
+        <b>timeslot</b>: <i># of days</i>
+        1, 5, 7, 30, 365, etc.
+        <b>uniqueness:</b>
+        <u><i>location_id</i></u>
+        <u><i>datatype_id</i></u>
+        <u>timeslot</u>
+    end note
+
+    SamplingCategory -- NoteSamplingCategory
+    SamplingCategory --> Location
+    SamplingCategory --> DataType
+
+    '--------------------------------------------------------------------------
+
+    class ConsolidatingFunction {
+        function : int
+        ignored_week_days : str
+        null_as_zero : bool
+    }
+
+    note as NoteCDF
+        <b>function:</b>
+        average, last
+        min, max
+        <b>uniqueness:</b>
+        <u><i>samplingcategory_id</i></u>
+        <u>function</u>
+    end note
+
+    ConsolidatingFunction -- NoteCDF
+    ConsolidatingFunction --> SamplingCategory
+
+    '--------------------------------------------------------------------------
+
+    class Threshold {
+        min_val : double
+        max_val : double
+        color : str
+        symbol : str
+    }
+
+    note as NoteThreshold
+        <b>uniqueness:</b>
+        <u><i>datatype_id</i></u>
+        <u>min_val</u>
+        <u>max_val</u>
+    end note
+    
+    Threshold .. NoteThreshold
     Threshold --> DataType
 
-    PrimaryDataPoint --> Location
-    PrimaryDataPoint --> DataType
+    '--------------------------------------------------------------------------
 
-    ConsolidatedDataPoint --> Location
-    ConsolidatedDataPoint --> DataType
-    ConsolidatedDataPoint -- NoteCDP
+    class PrimaryDataPoint {
+        date_sampled : date
+        value : double?
+    }
 
-    LinkPrimaryConsolidated --> PrimaryDataPoint
-    LinkPrimaryConsolidated --> ConsolidatedDataPoint
+    note as NotePrimaryDataPoint
+        <b>uniqueness:</b>
+        <u><i>samplingcategory_id</i></u>
+        <u>date_sampled</u>
+    end note
+    
+    PrimaryDataPoint .. NotePrimaryDataPoint
+    PrimaryDataPoint --> SamplingCategory
+
+    '--------------------------------------------------------------------------
+
+    class ConsolidatedDataPoint {
+        date_sampled : date
+        value : double?
+        has_null : bool
+        invalidated : bool
+    }
+
+    note as NoteConsolidatedDataPoint
+        <b>uniqueness:</b>
+        <u>date_sampled</u>
+        <u><i>consolidatingfunction_id</i></u>
+    end note
+
+    ConsolidatedDataPoint -- NoteConsolidatedDataPoint
+    ConsolidatedDataPoint --> ConsolidatingFunction
+
+    '--------------------------------------------------------------------------
+
+    class LinkPrimaryConsolidated {
+    }
+
+    note as NoteLinkPrimaryConsolidated
+        <b>uniqueness:</b>
+        <u><i>primarydatapoint_id</i></u>
+        <u><i>consolidateddatapoint_id</i></u>
+    end note
+
+    LinkPrimaryConsolidated -- NoteLinkPrimaryConsolidated
+    (PrimaryDataPoint, ConsolidatedDataPoint) .. LinkPrimaryConsolidated
+
+    '--------------------------------------------------------------------------
 
 @enduml
 
