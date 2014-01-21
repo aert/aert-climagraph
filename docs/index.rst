@@ -25,10 +25,10 @@ Features
 .. toctree::
    :maxdepth: 2
 
-   features/overview.rst
-   features/uc1_data_raw.rst
-   features/uc2_data_conso.rst
-   features/uc3_graphs.rst
+   features/overview
+   features/uc1_rawdata/index
+   features/uc2_cdp/index
+   features/uc3_graphs/index
 
 Developers
 **********

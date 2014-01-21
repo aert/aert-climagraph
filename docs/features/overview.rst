@@ -36,8 +36,8 @@ Global Use Cases
 .. toctree::
    :maxdepth: 1
 
-   uc1_data_raw.rst
-   uc2_data_conso.rst
-   uc3_graphs.rst
+   uc1_rawdata/index
+   uc2_cdp/index
+   uc3_graphs/index
 
 
